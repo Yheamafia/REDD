@@ -22,10 +22,7 @@
     body::before {
       content: "";
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.75);
       z-index: -1;
     }
@@ -35,20 +32,44 @@
       backdrop-filter: blur(15px);
       padding: 30px;
       border-radius: 24px;
-      width: 360px;
+      width: 380px;
       text-align: center;
       box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
       border: 1px solid rgba(255,255,255,0.1);
       overflow: hidden;
     }
 
-    .channel-img {
+    .channel-header {
       width: calc(100% + 60px);
-      height: 180px;
-      background: url('https://via.placeholder.com/400x180/00d2ff/ffffff?text=YHEA+EL+BARON') no-repeat center center;
-      background-size: cover;
+      height: 160px;
       margin: -30px -30px 20px -30px;
       border-bottom: 2px solid #00d2ff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071') no-repeat center center;
+      background-size: cover;
+    }
+
+    .channel-header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: 0;
+    }
+
+    .channel-header p {
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 0;
+      line-height: 1.6;
+      z-index: 1;
+      text-shadow: 0 2px 15px rgba(0, 210, 255, 0.8);
     }
 
     h2 {
@@ -57,7 +78,7 @@
       color: #00d2ff;
     }
 
-    p {
+    .info-text {
       font-size: 14px;
       color: #cbd5e1;
       margin-bottom: 25px;
@@ -81,17 +102,9 @@
       color: white;
     }
 
-    .sub {
-      background: linear-gradient(45deg, #ff416c, #ff4b2b);
-    }
-
-    .like {
-      background: linear-gradient(45deg, #00d2ff, #3a7bd5);
-    }
-
-    .unlock {
-      background: #334155;
-    }
+    .sub { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
+    .like { background: linear-gradient(45deg, #00d2ff, #3a7bd5); }
+    .unlock { background: #334155; }
 
     .unlock.ready {
       background: #10b981;
@@ -104,23 +117,16 @@
       color: #000;
       margin-top: 20px;
       animation: pulse 2s infinite;
+      text-decoration: none;
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-      100% {
-        transform: scale(1);
-      }
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
     .footer {
       margin-top: 25px;
@@ -129,56 +135,41 @@
     }
   </style>
 </head>
-
 <body>
 
 <div class="box">
-  <div class="channel-img"></div>
+  <div class="channel-header">
+    <p>الرجاء إكمال جميع الشروط لفتح موقع تنزيل رابط التحميل</p>
+  </div>
 
   <h2>🔒 نظام التحقق</h2>
-  <p>يرجى إكمال المهام لفتح الرابط</p>
+  <p class="info-text">يرجى إكمال المهام لفتح الرابط</p>
 
   <a href="https://www.youtube.com/@YHEAEBARON?sub_confirmation=1"
-     target="_blank"
-     id="subBtn"
-     class="btn sub"
-     onclick="startTimer('sub')">
+     target="_blank" id="subBtn" class="btn sub" onclick="startTimer('sub')">
     <span id="subText">📺 1. اشترك في القناة</span>
   </a>
 
   <a href="https://www.youtube.com/watch?v=OHLkiinqgmY"
-     target="_blank"
-     id="likeBtn"
-     class="btn like"
-     style="display:none;"
-     onclick="startTimer('like')">
+     target="_blank" id="likeBtn" class="btn like" style="display:none;" onclick="startTimer('like')">
     <span id="likeText">👍 2. اعمل لايك للفيديو</span>
   </a>
 
   <a href="https://www.youtube.com/watch?v=OHLkiinqgmY"
-     target="_blank"
-     id="commentBtn"
-     class="btn like"
-     style="display:none;"
-     onclick="startTimer('comment')">
+     target="_blank" id="commentBtn" class="btn like" style="display:none;" onclick="startTimer('comment')">
     <span id="commentText">💬 3. اكتب تعليق جميل</span>
   </a>
 
-  <button id="unlockBtn"
-          class="btn unlock"
-          disabled
-          onclick="finalCheck()">
+  <button id="unlockBtn" class="btn unlock" disabled onclick="finalCheck()">
     <span id="unlockText">بانتظار التحقق...</span>
   </button>
 
-  <a id="downloadArea"
-     href="https://sendgb.com/WujHdTwgrlF"
-     class="hidden"
-     target="_blank">
-    <button class="btn download">
+  <div id="downloadArea" class="hidden">
+    <a href="https://sendgb.com/WujHdTwgrlF"
+       class="btn download" target="_blank">
       ⬇ تحميل الملف الآن
-    </button>
-  </a>
+    </a>
+  </div>
 
   <div class="footer">
     POWERED BY YHEA GAMING © 2026
@@ -189,21 +180,17 @@
   let subDone = false;
   let likeDone = false;
   let commentDone = false;
-
-  const TASK_TIME = 25000;
+  const TASK_TIME = 18000; // وقت التحقق 18 ثانية
 
   function startTimer(type) {
-
     let btn, text;
 
     if (type === 'sub') {
       btn = document.getElementById('subBtn');
       text = document.getElementById('subText');
-
     } else if (type === 'like') {
       btn = document.getElementById('likeBtn');
       text = document.getElementById('likeText');
-
     } else {
       btn = document.getElementById('commentBtn');
       text = document.getElementById('commentText');
@@ -213,22 +200,16 @@
     text.innerText = "⏳ قيد التحقق...";
 
     setTimeout(() => {
-
       text.innerText = "✅ تمت المهمة بنجاح";
       btn.style.opacity = "0.6";
 
       if (type === 'sub') {
-
         subDone = true;
         document.getElementById('likeBtn').style.display = "flex";
-
       } else if (type === 'like') {
-
         likeDone = true;
         document.getElementById('commentBtn').style.display = "flex";
-
       } else {
-
         commentDone = true;
         enableUnlock();
       }
@@ -237,25 +218,17 @@
   }
 
   function enableUnlock() {
-
     if (subDone && likeDone && commentDone) {
-
       const unlockBtn = document.getElementById('unlockBtn');
-
       unlockBtn.disabled = false;
       unlockBtn.classList.add('ready');
-
-      document.getElementById('unlockText').innerText =
-        "فتح الرابط الآن";
+      document.getElementById('unlockText').innerText = "فتح الرابط الآن";
     }
   }
 
   function finalCheck() {
-
     document.getElementById('unlockBtn').style.display = "none";
-
-    document.getElementById('downloadArea')
-      .classList.remove('hidden');
+    document.getElementById('downloadArea').classList.remove('hidden');
   }
 </script>
 
