@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -22,7 +23,10 @@
     body::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(0, 0, 0, 0.75);
       z-index: -1;
     }
@@ -57,7 +61,10 @@
     .channel-header::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
       background: rgba(0, 0, 0, 0.65);
       z-index: 0;
     }
@@ -100,11 +107,20 @@
       transition: 0.3s;
       text-decoration: none;
       color: white;
+      box-sizing: border-box;
     }
 
-    .sub { background: linear-gradient(45deg, #ff416c, #ff4b2b); }
-    .like { background: linear-gradient(45deg, #00d2ff, #3a7bd5); }
-    .unlock { background: #334155; }
+    .sub {
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    }
+
+    .like {
+      background: linear-gradient(45deg, #00d2ff, #3a7bd5);
+    }
+
+    .unlock {
+      background: #334155;
+    }
 
     .unlock.ready {
       background: #10b981;
@@ -121,12 +137,22 @@
     }
 
     @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.05);
+      }
+
+      100% {
+        transform: scale(1);
+      }
     }
 
-    .hidden { display: none; }
+    .hidden {
+      display: none;
+    }
 
     .footer {
       margin-top: 25px;
@@ -135,38 +161,58 @@
     }
   </style>
 </head>
+
 <body>
 
 <div class="box">
+
   <div class="channel-header">
     <p>الرجاء إكمال جميع الشروط لفتح موقع تنزيل رابط التحميل</p>
   </div>
 
   <h2>🔒 نظام التحقق</h2>
-  <p class="info-text">يرجى إكمال المهام لفتح الرابط</p>
+
+  <p class="info-text">
+    يرجى إكمال المهام لفتح الرابط
+  </p>
 
   <a href="https://www.youtube.com/@YHEAEBARON?sub_confirmation=1"
-     target="_blank" id="subBtn" class="btn sub" onclick="startTimer('sub')">
+     target="_blank"
+     id="subBtn"
+     class="btn sub"
+     onclick="startTimer('sub')">
     <span id="subText">📺 1. اشترك في القناة</span>
   </a>
 
   <a href="https://www.youtube.com/watch?v=BNcKV20dZE4&t=77s"
-     target="_blank" id="likeBtn" class="btn like" style="display:none;" onclick="startTimer('like')">
+     target="_blank"
+     id="likeBtn"
+     class="btn like"
+     style="display:none;"
+     onclick="startTimer('like')">
     <span id="likeText">👍 2. اعمل لايك للفيديو</span>
   </a>
 
   <a href="https://www.youtube.com/watch?v=BNcKV20dZE4&t=77s"
-     target="_blank" id="commentBtn" class="btn like" style="display:none;" onclick="startTimer('comment')">
+     target="_blank"
+     id="commentBtn"
+     class="btn like"
+     style="display:none;"
+     onclick="startTimer('comment')">
     <span id="commentText">💬 3. اكتب تعليق جميل</span>
   </a>
 
-  <button id="unlockBtn" class="btn unlock" disabled onclick="finalCheck()">
+  <button id="unlockBtn"
+          class="btn unlock"
+          disabled
+          onclick="finalCheck()">
     <span id="unlockText">بانتظار التحقق...</span>
   </button>
 
   <div id="downloadArea" class="hidden">
-    <a href="https://sendgb.com/WujHdTwgrlF"
-       class="btn download" target="_blank">
+    <a href="https://www.sendgb.com/U1ksFmxGu5d"
+       class="btn download"
+       target="_blank">
       ⬇ تحميل الملف الآن
     </a>
   </div>
@@ -174,12 +220,14 @@
   <div class="footer">
     POWERED BY YHEA GAMING © 2026
   </div>
+
 </div>
 
 <script>
   let subDone = false;
   let likeDone = false;
   let commentDone = false;
+
   const TASK_TIME = 18000; // وقت التحقق 18 ثانية
 
   function startTimer(type) {
@@ -188,9 +236,11 @@
     if (type === 'sub') {
       btn = document.getElementById('subBtn');
       text = document.getElementById('subText');
+
     } else if (type === 'like') {
       btn = document.getElementById('likeBtn');
       text = document.getElementById('likeText');
+
     } else {
       btn = document.getElementById('commentBtn');
       text = document.getElementById('commentText');
@@ -200,37 +250,52 @@
     text.innerText = "⏳ قيد التحقق...";
 
     setTimeout(() => {
+
       text.innerText = "✅ تمت المهمة بنجاح";
       btn.style.opacity = "0.6";
 
       if (type === 'sub') {
+
         subDone = true;
         document.getElementById('likeBtn').style.display = "flex";
+
       } else if (type === 'like') {
+
         likeDone = true;
         document.getElementById('commentBtn').style.display = "flex";
+
       } else {
+
         commentDone = true;
         enableUnlock();
+
       }
 
     }, TASK_TIME);
   }
 
   function enableUnlock() {
+
     if (subDone && likeDone && commentDone) {
+
       const unlockBtn = document.getElementById('unlockBtn');
+
       unlockBtn.disabled = false;
       unlockBtn.classList.add('ready');
-      document.getElementById('unlockText').innerText = "فتح الرابط الآن";
+
+      document.getElementById('unlockText').innerText =
+        "فتح الرابط الآن";
     }
   }
 
   function finalCheck() {
+
     document.getElementById('unlockBtn').style.display = "none";
+
     document.getElementById('downloadArea').classList.remove('hidden');
   }
 </script>
 
 </body>
 </html>
+```
